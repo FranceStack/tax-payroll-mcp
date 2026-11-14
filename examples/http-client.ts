@@ -5,7 +5,7 @@
  *   PRIVATE_KEY=0x... npx tsx examples/http-client.ts
  *
  * PRIVATE_KEY: an EVM wallet holding USDC on the network shown by the server
- * (currently Base Sepolia test USDC: https://faucet.circle.com). Never commit it.
+ * (Base mainnet, real USDC: each call costs $0.005). Never commit it.
  */
 import { wrapFetchWithPaymentFromConfig } from '@x402/fetch';
 import { ExactEvmScheme } from '@x402/evm';
@@ -14,7 +14,7 @@ import { privateKeyToAccount } from 'viem/accounts';
 const MAX_PRICE_UNITS = 10_000n; // safety cap: never pay more than 0.01 USDC per call
 
 const fetchWithPayment = wrapFetchWithPaymentFromConfig(fetch, {
-  schemes: [{ network: 'eip155:84532', client: new ExactEvmScheme(privateKeyToAccount(process.env.PRIVATE_KEY as `0x${string}`)) }],
+  schemes: [{ network: 'eip155:8453', client: new ExactEvmScheme(privateKeyToAccount(process.env.PRIVATE_KEY as `0x${string}`)) }],
   paymentRequirementsSelector: (_version: number, requirements: { amount: string }[]) => {
     const ok = requirements.find((r) => BigInt(r.amount) <= MAX_PRICE_UNITS);
     if (!ok) throw new Error('Price above the safety cap');

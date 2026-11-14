@@ -5,7 +5,7 @@
  *   PRIVATE_KEY=0x... npx tsx examples/mcp-client.ts
  *
  * PRIVATE_KEY: an EVM wallet holding USDC on the network shown by the server
- * (currently Base Sepolia test USDC: https://faucet.circle.com). Never commit it.
+ * (Base mainnet, real USDC: each call costs $0.005). Never commit it.
  */
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';

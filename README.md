@@ -27,7 +27,7 @@ LLMs are bad at tax arithmetic: brackets, family quotient caps, *décote*, URSSA
 - **Pay only on success** — $0.005 per calculation in USDC via [x402](https://x402.org). Unsupported cases are refused for free. No account, no API key, no subscription.
 - **Verifiable** — every answer includes a step-by-step breakdown, assumptions, the scale version and sources, and a link to the official simulator.
 
-> **Status:** live in **test mode** — payments use test USDC on Base Sepolia. Mainnet (Base) is coming soon.
+> **Status:** live on **Base mainnet** — real USDC, $0.005 per successful calculation, paid with x402.
 
 ## Missing information? Your agent gets the questions — for free
 
