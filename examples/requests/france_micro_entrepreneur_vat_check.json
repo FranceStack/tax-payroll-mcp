@@ -1,0 +1,14 @@
+{
+  "activite": "liberale_non_reglementee",
+  "chiffre_affaires": 3000,
+  "periode": "mois",
+  "annee": 2026,
+  "mois": 10,
+  "date_debut_activite": "2022-01-10",
+  "acre": false,
+  "versement_liberatoire": false,
+  "verifier_franchise_tva": true,
+  "tva_chiffre_affaires_annee_precedente": 35000,
+  "tva_chiffre_affaires_cumule_annee": 40000,
+  "cas_particuliers": []
+}

@@ -3,7 +3,7 @@
   "name": "fr.francestack/tax-payroll",
   "title": "FranceStack Tax & Payroll",
   "description": "Exact French income tax, URSSAF and salary (CDI/CDD) calcs; free questions if info is missing (x402)",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "websiteUrl": "https://tax.francestack.fr",
   "icons": [
     {

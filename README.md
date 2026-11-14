@@ -23,7 +23,7 @@ LLMs are bad at tax arithmetic: brackets, family quotient caps, *décote*, URSSA
 
 - **Missing information? Free questions** — your agent doesn't need every field upfront. If anything is missing, it gets *for free* the exact questions to ask the user — in French, ready to use, with types and allowed values — in a single round trip.
 - **Exact, not generated** — no LLM at runtime, exact decimal arithmetic, every result validated before it is sent.
-- **Verified against official sources** — DGFiP tax tables (7,095 values, to the euro), URSSAF's official engine (`modele-social`), and 60 cases checked on the official government simulators.
+- **Verified against official sources** — DGFiP tax tables (7,095 values, to the euro), URSSAF's official engine (`modele-social`), 60 cases checked on the official government simulators and 15 worked examples of the official tax doctrine (BOFiP).
 - **Pay only on success** — $0.005 per calculation in USDC via [x402](https://x402.org). Unsupported cases are refused for free. No account, no API key, no subscription.
 - **Verifiable** — every answer includes a step-by-step breakdown, assumptions, the scale version and sources, and a link to the official simulator.
 
@@ -56,7 +56,7 @@ The agent asks the user, resends the complete request, and pays only for the suc
 | MCP tool | What it computes | Price |
 |---|---|---|
 | `france_income_tax` | French personal income tax (*impôt sur le revenu*): tax shares (*parts*), family quotient and its cap, *décote*, net tax, average and marginal rate (TMI). Income years 2024 and 2025. | $0.005 |
-| `france_micro_entrepreneur_contributions` | URSSAF social contributions of a micro-entrepreneur (*auto-entrepreneur*): contributions with or without ACRE, vocational training (CFP), chamber tax, optional *versement libératoire*, net income. 2025 and 2026. | $0.005 |
+| `france_micro_entrepreneur_contributions` | URSSAF social contributions of a micro-entrepreneur (*auto-entrepreneur*): contributions with or without ACRE, vocational training (CFP), chamber tax, optional *versement libératoire*, net income. 2025 and 2026. **Plus, on request, the VAT franchise check** (*franchise en base de TVA*, 2026): must they charge VAT, since when, will they lose the franchise on 1 January, how much margin is left. | $0.005 |
 | `france_gross_to_net_salary` | Gross-to-net salary (*salaire brut → net*) for a private-sector **CDI or CDD, full-time or part-time**: employee and employer contributions, net before and after income tax, general employer relief (RGDU, prorated for part-time), total employer cost. For a CDD: end-of-contract bonus (*prime de précarité*), paid-leave indemnity, CPF-CDD, monthly average and contract total. 2026. | $0.005 |
 | `list_france_calculators` | Catalogue: every tool with its input schema, a real example, the output schema and unsupported cases. | **free** |
 
@@ -128,7 +128,7 @@ A married couple with two children and €54,000 of net taxable income (example 
 | Tool | Verification |
 |---|---|
 | Income tax | Matches all **7,095 values** of the official DGFiP tax tables (brochure pratique 2025 and 2026) to the euro, plus 15 cases checked on the official impots.gouv.fr simulator. |
-| Micro-entrepreneur | Cross-checked on **2,000 cases** against URSSAF's official engine (`modele-social`) and 15 cases from the official URSSAF simulator. |
+| Micro-entrepreneur | Cross-checked on **2,000 cases** against URSSAF's official engine (`modele-social`) and 15 cases from the official URSSAF simulator. **VAT franchise:** 15 cases taken from the official worked examples of the tax doctrine (BOFiP BOI-TVA-DECLA-40-10-10, July 2026), including the first-year prorated thresholds (start on 12 June → €52,001 / €22,942) where the simplified impots.gouv.fr page and the binding doctrine disagree — FranceStack follows the binding doctrine. |
 | Gross-to-net | Uses URSSAF's official payroll engine (`modele-social`); official 2026 rates re-applied by hand in tests, official RGDU formula and example, **30 cases** checked on the official URSSAF simulator (15 full-time CDI, 15 CDD and part-time), plus hand-computed checks of the 10 % end-of-contract bonus, 10 % paid-leave indemnity, 1 % CPF-CDD and prorated minimum wage. |
 
 The service self-tests at startup and refuses to start if a published example does not match its own calculation. A payment is settled only after the result has passed its consistency checks.
@@ -140,7 +140,7 @@ The service self-tests at startup and refuses to start if a published example do
 
 ## En français
 
-FranceStack calcule de façon exacte et déterministe **l'impôt sur le revenu**, les **cotisations URSSAF des micro-entrepreneurs** et le **salaire net à partir du brut** (avec le coût employeur, en CDI ou en CDD avec prime de précarité, à temps plein ou à temps partiel), pour les agents IA. Barèmes officiels, sources citées, détail étape par étape, lien vers le simulateur officiel. Une information manquante ou un cas non géré est signalé **gratuitement**, avec les questions à poser ; un calcul n'est payé (0,005 $ en USDC via x402) que s'il aboutit. Hébergé à Paris.
+FranceStack calcule de façon exacte et déterministe **l'impôt sur le revenu**, les **cotisations URSSAF des micro-entrepreneurs** (et, sur demande, **la franchise de TVA** : dois-je facturer la TVA ?) et le **salaire net à partir du brut** (avec le coût employeur, en CDI ou en CDD avec prime de précarité, à temps plein ou à temps partiel), pour les agents IA. Barèmes officiels, sources citées, détail étape par étape, lien vers le simulateur officiel. Une information manquante ou un cas non géré est signalé **gratuitement**, avec les questions à poser ; un calcul n'est payé (0,005 $ en USDC via x402) que s'il aboutit. Hébergé à Paris.
 
 ## Disclaimer
 
