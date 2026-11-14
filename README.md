@@ -35,7 +35,7 @@ LLMs are bad at tax arithmetic: brackets, family quotient caps, *décote*, URSSA
 |---|---|---|
 | `france_income_tax` | French personal income tax (*impôt sur le revenu*): tax shares (*parts*), family quotient and its cap, *décote*, net tax, average and marginal rate (TMI). Income years 2024 and 2025. | $0.005 |
 | `france_micro_entrepreneur_contributions` | URSSAF social contributions of a micro-entrepreneur (*auto-entrepreneur*): contributions with or without ACRE, vocational training (CFP), chamber tax, optional *versement libératoire*, net income. 2025 and 2026. | $0.005 |
-| `france_gross_to_net_salary` | Gross-to-net salary (*salaire brut → net*) for a private-sector CDI: employee and employer contributions, net before and after income tax, general employer relief (RGDU), total employer cost. 2026. | $0.005 |
+| `france_gross_to_net_salary` | Gross-to-net salary (*salaire brut → net*) for a private-sector **CDI or CDD, full-time or part-time**: employee and employer contributions, net before and after income tax, general employer relief (RGDU, prorated for part-time), total employer cost. For a CDD: end-of-contract bonus (*prime de précarité*), paid-leave indemnity, CPF-CDD, monthly average and contract total. 2026. | $0.005 |
 | `list_france_calculators` | Catalogue: every tool with its input schema, a real example, the output schema and unsupported cases. | **free** |
 
 Unsupported situations (non-residents, part-time, mixed activities…) are listed in each tool description and refused **for free** — the service never guesses.
@@ -127,7 +127,7 @@ Questions are in French, ready to be asked to the end user as-is.
 |---|---|
 | Income tax | Matches all **7,095 values** of the official DGFiP tax tables (brochure pratique 2025 and 2026) to the euro, plus 15 cases checked on the official impots.gouv.fr simulator. |
 | Micro-entrepreneur | Cross-checked on **2,000 cases** against URSSAF's official engine (`modele-social`) and 15 cases from the official URSSAF simulator. |
-| Gross-to-net | Uses URSSAF's official payroll engine (`modele-social`); official 2026 rates re-applied by hand in tests, official RGDU formula and example, 15 cases checked on the official URSSAF simulator. |
+| Gross-to-net | Uses URSSAF's official payroll engine (`modele-social`); official 2026 rates re-applied by hand in tests, official RGDU formula and example, **30 cases** checked on the official URSSAF simulator (15 full-time CDI, 15 CDD and part-time), plus hand-computed checks of the 10 % end-of-contract bonus, 10 % paid-leave indemnity, 1 % CPF-CDD and prorated minimum wage. |
 
 The service self-tests at startup and refuses to start if a published example does not match its own calculation. A payment is settled only after the result has passed its consistency checks.
 
@@ -138,7 +138,7 @@ The service self-tests at startup and refuses to start if a published example do
 
 ## En français
 
-FranceStack calcule de façon exacte et déterministe **l'impôt sur le revenu**, les **cotisations URSSAF des micro-entrepreneurs** et le **salaire net à partir du brut** (avec le coût employeur), pour les agents IA. Barèmes officiels, sources citées, détail étape par étape, lien vers le simulateur officiel. Une information manquante ou un cas non géré est signalé **gratuitement**, avec les questions à poser ; un calcul n'est payé (0,005 $ en USDC via x402) que s'il aboutit. Hébergé à Paris.
+FranceStack calcule de façon exacte et déterministe **l'impôt sur le revenu**, les **cotisations URSSAF des micro-entrepreneurs** et le **salaire net à partir du brut** (avec le coût employeur, en CDI ou en CDD avec prime de précarité, à temps plein ou à temps partiel), pour les agents IA. Barèmes officiels, sources citées, détail étape par étape, lien vers le simulateur officiel. Une information manquante ou un cas non géré est signalé **gratuitement**, avec les questions à poser ; un calcul n'est payé (0,005 $ en USDC via x402) que s'il aboutit. Hébergé à Paris.
 
 ## Disclaimer
 

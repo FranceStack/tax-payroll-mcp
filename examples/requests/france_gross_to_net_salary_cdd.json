@@ -1,0 +1,19 @@
+{
+  "salaire_brut": 2000,
+  "periode": "mois",
+  "annee": 2026,
+  "mois": 1,
+  "type_contrat": "CDD",
+  "cdd_motif": "accroissement_activite",
+  "cdd_duree_mois": 6,
+  "cdd_jours_conges_pris": 0,
+  "cdd_suivi_d_un_cdi": false,
+  "cdd_job_vacances_jeune": false,
+  "statut_cadre": false,
+  "effectif": "de_20_a_49",
+  "mutuelle_part_salariale": 0,
+  "mutuelle_part_patronale": 0,
+  "taux_versement_mobilite_pourcent": 0,
+  "taux_atmp_pourcent": 1,
+  "cas_particuliers": []
+}

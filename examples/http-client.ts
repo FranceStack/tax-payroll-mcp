@@ -30,6 +30,7 @@ const response = await fetchWithPayment('https://tax.francestack.fr/api/calcul/b
     periode: 'mois',
     annee: 2026,
     mois: 3,
+    type_contrat: 'CDI',
     statut_cadre: false,
     effectif: 'de_20_a_49',
     mutuelle_part_salariale: 30,

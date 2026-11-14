@@ -1,0 +1,15 @@
+{
+  "salaire_brut": 1300,
+  "periode": "mois",
+  "annee": 2026,
+  "mois": 1,
+  "type_contrat": "CDI",
+  "temps_partiel_heures_par_semaine": 24,
+  "statut_cadre": false,
+  "effectif": "de_20_a_49",
+  "mutuelle_part_salariale": 0,
+  "mutuelle_part_patronale": 0,
+  "taux_versement_mobilite_pourcent": 0,
+  "taux_atmp_pourcent": 1,
+  "cas_particuliers": []
+}
