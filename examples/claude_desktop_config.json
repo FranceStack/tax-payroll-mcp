@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "francestack-tax": {
+      "type": "http",
+      "url": "https://tax.francestack.fr/mcp"
+    }
+  }
+}

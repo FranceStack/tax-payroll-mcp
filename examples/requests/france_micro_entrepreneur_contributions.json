@@ -1,0 +1,12 @@
+{
+  "activite": "prestations_services_commercant",
+  "chiffre_affaires": 3000,
+  "periode": "mois",
+  "annee": 2026,
+  "mois": 3,
+  "date_debut_activite": "2022-01-10",
+  "acre": false,
+  "versement_liberatoire": false,
+  "chiffre_affaires_n_moins_2_superieur_5000": true,
+  "cas_particuliers": []
+}

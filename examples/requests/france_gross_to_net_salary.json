@@ -1,0 +1,12 @@
+{
+  "salaire_brut": 3000,
+  "periode": "mois",
+  "annee": 2026,
+  "mois": 3,
+  "statut_cadre": false,
+  "effectif": "de_20_a_49",
+  "mutuelle_part_salariale": 30,
+  "mutuelle_part_patronale": 30,
+  "taux_versement_mobilite_pourcent": 1.75,
+  "cas_particuliers": []
+}
