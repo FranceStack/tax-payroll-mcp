@@ -21,13 +21,35 @@
 
 LLMs are bad at tax arithmetic: brackets, family quotient caps, *décote*, URSSAF rates that change every January. **FranceStack does the calculation deterministically, with the official rules, and shows its work** — so your agent can answer French users with numbers it can trust, for a fraction of a cent.
 
+- **Missing information? Free questions** — your agent doesn't need every field upfront. If anything is missing, it gets *for free* the exact questions to ask the user — in French, ready to use, with types and allowed values — in a single round trip.
 - **Exact, not generated** — no LLM at runtime, exact decimal arithmetic, every result validated before it is sent.
-- **Verified against official sources** — DGFiP tax tables (7,095 values, to the euro), URSSAF's official engine (`modele-social`), and cases checked on the official government simulators.
-- **Errors are free** — missing or unsupported inputs return, *before any payment*, the exact questions to ask the user.
-- **Pay only on success** — $0.005 per calculation in USDC via [x402](https://x402.org). No account, no API key, no subscription.
+- **Verified against official sources** — DGFiP tax tables (7,095 values, to the euro), URSSAF's official engine (`modele-social`), and 60 cases checked on the official government simulators.
+- **Pay only on success** — $0.005 per calculation in USDC via [x402](https://x402.org). Unsupported cases are refused for free. No account, no API key, no subscription.
 - **Verifiable** — every answer includes a step-by-step breakdown, assumptions, the scale version and sources, and a link to the official simulator.
 
 > **Status:** live in **test mode** — payments use test USDC on Base Sepolia. Mainnet (Base) is coming soon.
+
+## Missing information? Your agent gets the questions — for free
+
+An agent asks for the net salary of a **CDD** (fixed-term contract) but doesn't know the contract details yet. Instead of guessing — or charging for an error — FranceStack answers **for free** (HTTP 422 or MCP error result, no payment) with every question to ask the user, in one round trip. This is the real response:
+
+```json
+{
+  "erreur": {
+    "code": "champs_manquants",
+    "message": "Des informations sont nécessaires pour effectuer le calcul. Posez ces questions à l’utilisateur puis renvoyez la requête complète.",
+    "champs_manquants": [
+      { "champ": "cdd_motif", "question": "Pour quel motif le CDD a-t-il été conclu ? (accroissement temporaire d’activité, remplacement d’un salarié absent, emploi saisonnier, CDD d’usage)", "type": "texte", "valeurs_possibles": ["accroissement_activite", "remplacement", "saisonnier", "usage"] },
+      { "champ": "cdd_duree_mois", "question": "Quelle est la durée totale du CDD, en mois (par exemple 6, ou 1.5 pour six semaines) ?", "type": "nombre" },
+      { "champ": "cdd_jours_conges_pris", "question": "Combien de jours de congés payés le salarié prendra-t-il pendant le CDD (en jours ouvrés, 0 s’il n’en prend aucun) ?", "type": "nombre" },
+      { "champ": "cdd_suivi_d_un_cdi", "question": "Le CDD sera-t-il immédiatement suivi d’un CDI chez le même employeur ?", "type": "booléen", "valeurs_possibles": [true, false] },
+      { "champ": "cdd_job_vacances_jeune", "question": "S’agit-il d’un job de vacances d’un jeune (élève ou étudiant) pendant ses vacances scolaires ou universitaires ?", "type": "booléen", "valeurs_possibles": [true, false] }
+    ]
+  }
+}
+```
+
+The agent asks the user, resends the complete request, and pays only for the successful calculation. Same behaviour on every tool: a household without its number of children, a micro-entrepreneur without an activity type, and so on.
 
 ## Tools
 
@@ -100,26 +122,6 @@ A married couple with two children and €54,000 of net taxable income (example 
 ```
 
 *(abridged — the real response also contains every intermediate amount and all sources)*
-
-## Missing information? Free, with the questions to ask
-
-```json
-{
-  "erreur": {
-    "code": "champs_manquants",
-    "message": "Des informations sont nécessaires pour effectuer le calcul. Posez ces questions à l’utilisateur puis renvoyez la requête complète.",
-    "champs_manquants": [
-      {
-        "champ": "enfants_a_charge",
-        "question": "Combien d'enfants avez-vous à votre charge exclusive ou principale (enfants mineurs, ou majeurs rattachés à votre foyer fiscal) ? Ne comptez pas les enfants en résidence alternée.",
-        "type": "entier"
-      }
-    ]
-  }
-}
-```
-
-Questions are in French, ready to be asked to the end user as-is.
 
 ## How reliability is ensured
 
