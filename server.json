@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "fr.francestack/tax-payroll",
   "title": "FranceStack Tax & Payroll",
-  "description": "French income tax, URSSAF, salary, working days, severance; free questions if info missing (x402)",
-  "version": "0.7.0",
+  "description": "French tax, salary, URSSAF, severance, unemployment benefit; free questions if info missing (x402)",
+  "version": "0.8.0",
   "websiteUrl": "https://tax.francestack.fr",
   "icons": [
     {
