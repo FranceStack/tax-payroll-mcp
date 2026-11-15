@@ -23,11 +23,11 @@ LLMs are bad at tax arithmetic: brackets, family quotient caps, *décote*, URSSA
 
 - **Missing information? Free questions** — your agent doesn't need every field upfront. If anything is missing, it gets *for free* the exact questions to ask the user — in French, ready to use, with types and allowed values — in a single round trip.
 - **Exact, not generated** — no LLM at runtime, exact decimal arithmetic, every result validated before it is sent.
-- **Verified against official sources** — DGFiP tax tables (7,095 values, to the euro), URSSAF's official engine (`modele-social`), 60 cases checked on the official government simulators and 15 worked examples of the official tax doctrine (BOFiP).
-- **Pay only on success** — $0.001 to $0.005 per calculation in USDC via [x402](https://x402.org). Unsupported cases are refused for free. No account, no API key, no subscription.
+- **Verified against official sources** — DGFiP tax tables (7,095 values, to the euro), URSSAF's official engine (`modele-social`), 75 cases checked on the official government simulators, 15 worked examples of the official tax doctrine (BOFiP) and the severance-pay examples of the official social security doctrine (BOSS).
+- **Pay only on success** — $0.001 to $0.02 per calculation in USDC via [x402](https://x402.org). Unsupported cases are refused for free. No account, no API key, no subscription.
 - **Verifiable** — every answer includes a step-by-step breakdown, assumptions, the scale version and sources, and a link to the official simulator.
 
-> **Status:** live on **Base mainnet** — real USDC, $0.001 to $0.005 per successful calculation, paid with x402.
+> **Status:** live on **Base mainnet** — real USDC, $0.001 to $0.02 per successful calculation, paid with x402.
 
 ## Missing information? Your agent gets the questions — for free
 
@@ -59,6 +59,7 @@ The agent asks the user, resends the complete request, and pays only for the suc
 | `france_micro_entrepreneur_contributions` | URSSAF social contributions of a micro-entrepreneur (*auto-entrepreneur*): contributions with or without ACRE, vocational training (CFP), chamber tax, optional *versement libératoire*, net income. 2025 and 2026. **Plus, on request, the VAT franchise check** (*franchise en base de TVA*, 2026): must they charge VAT, since when, will they lose the franchise on 1 January, how much margin is left. | $0.005 |
 | `france_gross_to_net_salary` | Gross-to-net salary (*salaire brut → net*) for a private-sector **CDI or CDD, full-time or part-time**: employee and employer contributions, net before and after income tax, general employer relief (RGDU, prorated for part-time), total employer cost. For a CDD: end-of-contract bonus (*prime de précarité*), paid-leave indemnity, CPF-CDD, monthly average and contract total. 2026. | $0.005 |
 | `france_working_days` | French public holidays (*jours fériés*) and working days for **mainland France and Alsace-Moselle**, 2000-2027: list a year's holidays, count calendar, working (*jours ouvrés*) and business days (*jours ouvrables*) between two dates, or add N working days to a date. Holidays worked by the company and extra days off taken into account. | $0.001 |
+| `france_severance_pay` | French **severance pay** for a CDI, 2026: statutory dismissal indemnity (*indemnité de licenciement*) or minimum mutual-termination indemnity (*rupture conventionnelle*), from seniority (counted exactly like the Labour Ministry simulator) and reference salary. Then the official **tax and social split** of the amount actually paid: income-tax-exempt part, social contribution base, CSG/CRDS, net, and the 40% employer levy on *rupture conventionnelle* (2026 social security financing act). | $0.02 |
 | `list_france_calculators` | Catalogue: every tool with its input schema, a real example, the output schema and unsupported cases. | **free** |
 
 Unsupported situations (non-residents, part-time, mixed activities…) are listed in each tool description and refused **for free** — the service never guesses.
@@ -142,7 +143,7 @@ The service self-tests at startup and refuses to start if a published example do
 
 ## En français
 
-FranceStack calcule de façon exacte et déterministe **l'impôt sur le revenu**, les **cotisations URSSAF des micro-entrepreneurs** (et, sur demande, **la franchise de TVA** : dois-je facturer la TVA ?) et le **salaire net à partir du brut** (avec le coût employeur, en CDI ou en CDD avec prime de précarité, à temps plein ou à temps partiel) et les **jours ouvrés et fériés** (métropole et Alsace-Moselle), pour les agents IA. Barèmes officiels, sources citées, détail étape par étape, lien vers le simulateur officiel. Une information manquante ou un cas non géré est signalé **gratuitement**, avec les questions à poser ; un calcul n'est payé (0,001 $ à 0,005 $ en USDC via x402) que s'il aboutit. Hébergé à Paris.
+FranceStack calcule de façon exacte et déterministe **l'impôt sur le revenu**, les **cotisations URSSAF des micro-entrepreneurs** (et, sur demande, **la franchise de TVA** : dois-je facturer la TVA ?) et le **salaire net à partir du brut** (avec le coût employeur, en CDI ou en CDD avec prime de précarité, à temps plein ou à temps partiel) les **jours ouvrés et fériés** (métropole et Alsace-Moselle) et l'**indemnité de licenciement ou de rupture conventionnelle** avec sa fiscalité (part exonérée d'impôt, CSG/CRDS, contribution patronale de 40 %), pour les agents IA. Barèmes officiels, sources citées, détail étape par étape, lien vers le simulateur officiel. Une information manquante ou un cas non géré est signalé **gratuitement**, avec les questions à poser ; un calcul n'est payé (0,001 $ à 0,02 $ en USDC via x402) que s'il aboutit. Hébergé à Paris.
 
 ## Disclaimer
 
