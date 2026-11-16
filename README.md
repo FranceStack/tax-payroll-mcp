@@ -11,6 +11,7 @@
 
 <p align="center">
   <a href="https://tax.francestack.fr">Website</a> ·
+  <a href="https://tax.francestack.fr/fr">Site en français</a> ·
   <a href="https://tax.francestack.fr/llms.txt">llms.txt</a> ·
   <a href="https://tax.francestack.fr/api/calculs">Catalogue</a> ·
   <a href="https://tax.francestack.fr/openapi.json">OpenAPI</a> ·
@@ -96,7 +97,7 @@ curl -i -X POST https://tax.francestack.fr/api/calcul/impot-revenu \
 #   Pay with any x402 client and resend with the PAYMENT-SIGNATURE header.
 ```
 
-Endpoints: `POST /api/calcul/impot-revenu`, `POST /api/calcul/micro-entrepreneur`, `POST /api/calcul/brut-net`. Full schemas in [`/openapi.json`](https://tax.francestack.fr/openapi.json). Example with `@x402/fetch`: [`examples/http-client.ts`](examples/http-client.ts).
+Endpoints: `POST /api/calcul/<id>` with `impot-revenu`, `micro-entrepreneur`, `brut-net`, `jours-ouvres`, `indemnite-rupture` or `allocation-chomage`. Full schemas in [`/openapi.json`](https://tax.francestack.fr/openapi.json). Example with `@x402/fetch`: [`examples/http-client.ts`](examples/http-client.ts).
 
 ## What you get back
 
@@ -149,6 +150,8 @@ The service self-tests at startup and refuses to start if a published example do
 ## En français
 
 FranceStack calcule de façon exacte et déterministe **l'impôt sur le revenu**, les **cotisations URSSAF des micro-entrepreneurs** (et, sur demande, **la franchise de TVA** : dois-je facturer la TVA ?) et le **salaire net à partir du brut** (avec le coût employeur, en CDI ou en CDD avec prime de précarité, à temps plein ou à temps partiel) les **jours ouvrés et fériés** (métropole et Alsace-Moselle) et l'**indemnité de licenciement ou de rupture conventionnelle** avec sa fiscalité (part exonérée d'impôt, CSG/CRDS, contribution patronale de 40 %) et l'**allocation chômage (ARE)** : montant, durée, dégressivité et date de début, pour les agents IA. Barèmes officiels, sources citées, détail étape par étape, lien vers le simulateur officiel. Une information manquante ou un cas non géré est signalé **gratuitement**, avec les questions à poser ; un calcul n'est payé (0,001 $ à 0,03 $ en USDC via x402) que s'il aboutit. Hébergé à Paris.
+
+Une page par outil, avec un exemple réel, les cas non gérés et les sources officielles : [Impôt sur le revenu](https://tax.francestack.fr/fr/calcul-impot-sur-le-revenu) · [Cotisations micro-entrepreneur](https://tax.francestack.fr/fr/cotisations-micro-entrepreneur) · [Salaire brut en net](https://tax.francestack.fr/fr/salaire-brut-net) · [Jours ouvrés et fériés](https://tax.francestack.fr/fr/jours-ouvres-jours-feries) · [Indemnité de licenciement et de rupture conventionnelle](https://tax.francestack.fr/fr/indemnite-licenciement-rupture-conventionnelle) · [Allocation chômage (ARE)](https://tax.francestack.fr/fr/allocation-chomage-are).
 
 ## Disclaimer
 
