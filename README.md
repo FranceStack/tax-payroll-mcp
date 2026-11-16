@@ -6,7 +6,7 @@
 
 <p align="center">
   <strong>Exact French tax and payroll calculations for AI agents — as an MCP server and a pay-per-call HTTP API.</strong><br>
-  Income tax · Micro-entrepreneur (URSSAF) contributions · Gross-to-net salary &amp; employer cost · Working days &amp; public holidays
+  Income tax · Micro-entrepreneur (URSSAF) contributions · Gross-to-net salary &amp; employer cost · Working days &amp; public holidays · Severance pay · Unemployment benefit (ARE)
 </p>
 
 <p align="center">
@@ -15,6 +15,10 @@
   <a href="https://tax.francestack.fr/api/calculs">Catalogue</a> ·
   <a href="https://tax.francestack.fr/openapi.json">OpenAPI</a> ·
   <a href="https://registry.modelcontextprotocol.io/v0.1/servers?search=fr.francestack">MCP Registry</a>
+</p>
+
+<p align="center">
+  <a href="https://mcpservers.org/servers/francestack/tax-payroll-mcp"><img src="https://mcpservers.org/badge.svg" alt="Listed on mcpservers.org"></a>
 </p>
 
 ---
