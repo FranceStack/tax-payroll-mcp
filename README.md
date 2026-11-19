@@ -12,6 +12,7 @@
 <p align="center">
   <a href="https://tax.francestack.fr">Website</a> ·
   <a href="https://tax.francestack.fr/fr">Site en français</a> ·
+  <a href="https://tax.francestack.fr/en/reliability">Reliability evidence</a> ·
   <a href="https://tax.francestack.fr/llms.txt">llms.txt</a> ·
   <a href="https://tax.francestack.fr/api/calculs">Catalogue</a> ·
   <a href="https://tax.francestack.fr/openapi.json">OpenAPI</a> ·
@@ -132,6 +133,8 @@ A married couple with two children and €54,000 of net taxable income (example 
 *(abridged — the real response also contains every intermediate amount and all sources)*
 
 ## How reliability is ensured
+
+**The same exact answer, every time:** no generative AI at calculation time, so the same request always returns the same result, with the scale version used. Tool-by-tool evidence (official reference cases, independent checks, tricky rules handled, known gaps between official sources): [tax.francestack.fr/en/reliability](https://tax.francestack.fr/en/reliability).
 
 | Tool | Verification |
 |---|---|

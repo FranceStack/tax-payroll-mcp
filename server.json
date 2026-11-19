@@ -3,7 +3,7 @@
   "name": "fr.francestack/tax-payroll",
   "title": "FranceStack Tax & Payroll",
   "description": "French tax, salary, URSSAF, severance, unemployment benefit; free questions if info missing (x402)",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "websiteUrl": "https://tax.francestack.fr",
   "icons": [
     {
